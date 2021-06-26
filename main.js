@@ -77,9 +77,9 @@ var radius = 10;
 
 function moveCamera(){
   
-  const t=document.body.getBoundingClientRect().top*0.002+2;
-  camera.position.y = 5* Math.cos(t);
-  camera.position.z = 5* Math.sin(t); 
+  const t=document.body.getBoundingClientRect().top*0.001+2;
+  camera.position.y = 1.5* Math.cos(t);
+  camera.position.z = 2* Math.sin(t); 
   //camera.target.position.copy( gltf.scene )
   var position = new THREE.Vector3(0,1,0);
   camera.lookAt( position );

@@ -3,8 +3,14 @@ canvas{
   left:0;
   top:0;
 }
-header{
-
+.coffee-section{
+  margin-top: 150px;
+}
+.coffee-section img{
+  width:100%;
+}
+img{
+  width:100%;
 }
 main{
   width:100%;
