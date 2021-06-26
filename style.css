@@ -1,0 +1,12 @@
+canvas{
+  position: fixed;
+  left:0;
+  top:0;
+}
+header{
+
+}
+main{
+  width:100%;
+  position: absolute;
+}
