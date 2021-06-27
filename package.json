@@ -11,8 +11,5 @@
   },
   "dependencies": {
     "three": "^0.129.0"
-  },
-  "files": [
-    "assets"
-  ]
+  }
 }
