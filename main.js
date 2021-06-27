@@ -21,13 +21,13 @@ function init(){
     refractionRatio: 0.8
   });*/
   const loader = new GLTFLoader();
-  loader.load( './assets/boba/tea.glb', function ( gltf ) {
+  loader.load( 'assets/boba/tea.glb', function ( gltf ) {
     scene.add( gltf.scene );
   }, undefined, function ( error ) {
     console.error( error );
   });
 
-  loader.load( './assets/boba/glass.glb', function ( gltf ) {
+  loader.load( 'assets/boba/glass.glb', function ( gltf ) {
     scene.add( gltf.scene );
   }, undefined, function ( error ) {
     console.error( error );
