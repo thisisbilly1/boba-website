@@ -1,4 +1,4 @@
-canvas{
+#bg{
   position: fixed;
   left:0;
   top:0;
@@ -15,4 +15,17 @@ img{
 main{
   width:100%;
   position: absolute;
+  scroll-snap-type: y mandatory;
+}
+.menu{
+  scroll-snap-align: start;
+}
+#bg2{
+  width:100%;
+  height:100%;
+}
+.about{
+  scroll-snap-align: start;
+  background-color: white;
+  position: relative;
 }

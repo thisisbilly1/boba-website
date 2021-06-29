@@ -22,29 +22,57 @@ function init(){
     console.error( error );
   });
 
+  /*
+  const glassmaterial = new THREE.MeshPhysicalMaterial( { 
+    map: null,
+    color: 0x0000ff,
+    metalness: 1,
+    roughness: 1,
+    opacity: 0.2,
+    transparent: true,
+    envMapIntensity: 0,
+    premultipliedAlpha: false
+  } );
+  */
+  const r = "textures/cube/MilkyWay/";
+
+  const urls = [
+    r + "dark-s_px.jpg", r + "dark-s_nx.jpg",
+    r + "dark-s_py.jpg", r + "dark-s_ny.jpg",
+    r + "dark-s_pz.jpg", r + "dark-s_nz.jpg"
+  ];
   
-  const glassmaterialfront = new THREE.MeshPhysicalMaterial( { 
-    map: null,
-    color: 0x0000ff,
-    metalness: 1,
-    roughness: 0,
-    opacity: 0.5,
-    side: THREE.BackSide,
-    transparent: true,
-    envMapIntensity: 5,
-    premultipliedAlpha: true
+
+  const textureCube = new THREE.CubeTextureLoader().load( urls );
+  textureCube.mapping = THREE.CubeRefractionMapping;
+  //scene.background = textureCube;
+  //scene.background.generateMipmaps
+/*
+  const glassmaterial = new THREE.MeshPhongMaterial( { 
+    color: 0xffffff, 
+    envMap: textureCube, 
+    refractionRatio: 0.9,
+    transparent:true,
+    opacity:.1,
+    side:THREE.FrontSide,
+    reflectivity:0,
   } );
-  const glassmaterialback = new THREE.MeshPhysicalMaterial( { 
-    map: null,
-    color: 0x0000ff,
-    metalness: 1,
-    roughness: 0,
-    opacity: 0.5,
-    side: THREE.BackSide,
-    transparent: true,
-    envMapIntensity: 5,
-    premultipliedAlpha: true
+  */
+  const glassmaterial = new THREE.MeshPhysicalMaterial( { 
+    envMap: textureCube,
+    color: 0xffffff, 
+    //metalness: .2,
+    roughness: .1,
+    //opacity: 0.5,
+    //transparent: true,
+    //premultipliedAlpha: false,
+    refractionRatio:1,
+    transmission:1,
+    reflectivity:1,
+    ior:1.450
   } );
+
+  
   loader.load( 'assets/boba/glass.glb', function ( gltf ) {
     //scene.add( gltf.scene );
     let objects=[]
@@ -52,19 +80,8 @@ function init(){
       if (child instanceof THREE.Mesh) {
         //child.material=glassmaterial
 
-        child.material = glassmaterialback;
-        let second = child.clone();
-        second.material = glassmaterialfront;
-
-        //let parent = new THREE.Group();
-        //parent.add( second );
-        //parent.add( child );
-        //scene.add( second );
-        //scene.add( child );
-
-
+        child.material = glassmaterial;
         objects.push( child );
-        objects.push( second );
       }
     })
     //let mesh = new THREE.Mesh( gltf.scene, glassmaterial );
@@ -117,15 +134,25 @@ function onWindowResize(){
 }
 
 //handle the scrolling to update the 3d background
-function moveCamera(){
+function controlscene(){
   
-  const t=document.body.getBoundingClientRect().top*0.001+2;
-  camera.position.y = 1.5* Math.cos(t);
-  camera.position.z = 2* Math.sin(t); 
+  const t=document.body.getBoundingClientRect().top*-(0.0003)*(window.innerWidth / window.innerHeight)+1.5;
+
+  camera.position.y = 3* Math.cos(t)+2;
+  camera.position.z = 3* Math.sin(t); 
   //camera.target.position.copy( gltf.scene )
-  var position = new THREE.Vector3(0,1,0);
+  var position = new THREE.Vector3(0,2,0);
   camera.lookAt( position );
 
 }
-document.body.onscroll=moveCamera;
-moveCamera()
+function mouseMove(e){
+  //console.log(e)
+  //camera.position.x=-e.clientX/window.innerWidth
+  //camera.position.y=e.clientY/window.innerHeight
+  //var position = new THREE.Vector3(0,1,0);
+  //camera.lookAt( position );
+}
+document.body.onmousemove=mouseMove;
+
+document.body.onscroll=controlscene;
+controlscene()
