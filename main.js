@@ -12,7 +12,7 @@ function init(){
   const container = document.querySelector("#bg")
   camera = new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight,0.1,1000);
   scene = new THREE.Scene();
-  scene.background = new THREE.Color( 0xcccccc );
+  scene.background = new THREE.Color( "white" );
   renderer = new THREE.WebGLRenderer({canvas:container})
 
   const loader = new GLTFLoader();
@@ -136,10 +136,10 @@ function onWindowResize(){
 //handle the scrolling to update the 3d background
 function controlscene(){
   
-  const t=document.body.getBoundingClientRect().top*-(0.0003)*(window.innerWidth / window.innerHeight)+1.5;
+  const t=document.body.getBoundingClientRect().top*(0.0003)*(window.innerWidth / window.innerHeight)+1.5;
 
-  camera.position.y = 3* Math.cos(t)+2;
-  camera.position.z = 3* Math.sin(t); 
+  camera.position.y = 4* Math.cos(t)+2;
+  camera.position.z = 3.5* Math.sin(t); 
   //camera.target.position.copy( gltf.scene )
   var position = new THREE.Vector3(0,2,0);
   camera.lookAt( position );

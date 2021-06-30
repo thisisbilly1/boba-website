@@ -9,7 +9,7 @@ animate()
 function init(){
   about=document.getElementById("about");//document.querySelector("#bg2")
   container = document.getElementById("bg2");//document.querySelector("#bg2")
-  camera = new THREE.PerspectiveCamera(75,about.offsetWidth / about.offsetHeight,0.1,1000);
+  camera = new THREE.PerspectiveCamera(75,container.offsetWidth / container.offsetHeight,0.1,1000);
   camera.position.set(0,0,100)
   scene = new THREE.Scene();
   //scene.background = new THREE.Color( 0xcccccc );
@@ -66,7 +66,7 @@ function init(){
 
 
   renderer.setPixelRatio(window.devicePixelRatio)
-  renderer.setSize(about.offsetWidth,about.offsetHeight)
+  renderer.setSize( window.innerWidth, window.innerHeight +100);
 
   window.addEventListener( 'resize', onWindowResize );
   document.onscroll=controlscene;
@@ -78,9 +78,9 @@ function animate(){
 }
 
 function onWindowResize(){
-  camera.aspect = about.offsetWidth / about.offsetHeight;
+  camera.aspect = window.innerWidth / (window.innerHeight+100);
   camera.updateProjectionMatrix();
-  renderer.setSize( about.offsetWidth,about.offsetHeight);
+  renderer.setSize( window.innerWidth, window.innerHeight+100 );
 }
 
 //handle the scrolling to update the 3d background

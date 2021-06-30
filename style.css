@@ -7,21 +7,21 @@ header .diagonal-box{
   position: absolute;
   top:-150px;
   width:100%;
-  padding-top:200px;
-  padding-bottom:100px;
-  background-image: linear-gradient(45deg, #654ea3, #eaafc8);
+  padding-top: 150px;
+  /*background-image: linear-gradient(45deg, #654ea3, #eaafc8);*/
+  background-color: "white";
 }
 .diagonal-box {
 	
-	transform: skewY(-4deg);
+	transform: skewY(-8deg);
 }
 
 .content {
 	margin: 0 auto;
-	transform: skewY(4deg);
+	transform: skewY(8deg);
 }
 
-#bg, #bg2{
+#bg{
   position: fixed;
   left:0;
   top:0;
@@ -51,8 +51,35 @@ main{
   margin-top: 100px;
 }
 
+#bg2{
+  width:100%;
+  height:500px;
+
+  left:0;
+  top:-6%;
+  z-index: -2;
+  position: -webkit-sticky;
+  position: sticky;
+}
+
 #about .content {
 	position: absolute;
   width:100%;
   top:5%;
+}
+
+.top-menu{
+  display: flex;
+  width:1500px;
+}
+
+.top-menu-text{
+  display: flex;
+  width:1000px;
+}
+.top-menu-text a{
+  padding-left: 25px;
+  font-size: large;
+  font-weight: bold;
+  color:#bc261a;
 }
